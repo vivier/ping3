@@ -36,11 +36,8 @@ Changelog = "https://github.com/kyan001/ping3/blob/master/CHANGELOG.md"
 [project.scripts]
 ping3 = "ping3.command_line:main"
 
-[tool.setuptools]
-py-modules = ["ping3"]
-
 [tool.setuptools.dynamic]
 version = {attr = "ping3.__version__"}
 
 [tool.setuptools.packages.find]
-exclude = ["contrib", "docs", "tests"]
+include = ["ping3"]
