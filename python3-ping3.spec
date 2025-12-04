@@ -1,6 +1,9 @@
 %global pypi_name python3-ping3
 %global srcname ping3
 
+# for github RPM packaging:
+#Name ping3
+#Version 5.1.5
 Name:		%{pypi_name}
 Version:	5.1.5
 Release:	1%{?dist}

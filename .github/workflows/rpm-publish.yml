@@ -1,0 +1,24 @@
+name: RPM build
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Files checkout
+      uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.x'
+    - name: TAR creation
+      run: pip install build && python -m build --sdist && mv dist/* .
+    - name: build RPM package
+      id: rpm
+      uses: naveenrajm7/rpmbuild@master
+      with:
+        spec_file: "python3-ping3.spec"
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4.0.0
+      with:
+        name: Binary RPM
+        path: ${{ steps.rpm.outputs.rpm_dir_path }}
